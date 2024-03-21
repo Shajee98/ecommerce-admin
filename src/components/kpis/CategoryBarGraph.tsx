@@ -1,21 +1,20 @@
-import React, { PureComponent } from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, Rectangle, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
   {
-    name: 'Jan',
+    name: 'Dog',
     uv: 4000,
     pv: 2400,
     amt: 2400,
   },
   {
-    name: 'Feb',
+    name: 'Cat',
     uv: 3000,
     pv: 1398,
     amt: 2210,
   },
   {
-    name: 'March',
+    name: 'Bird',
     uv: 2000,
     pv: 9800,
     amt: 2290,
@@ -46,58 +45,58 @@ const data = [
   },
   {
     name: 'Aug',
-    uv: 4300,
-    pv: 4300,
-    amt: 2100,
+    uv: 3490,
+    pv: 2500,
+    amt: 2500,
   },
   {
     name: 'Sept',
-    uv: 2100,
-    pv: 4300,
-    amt: 2100,
+    uv: 3490,
+    pv: 900,
+    amt: 900,
   },
   {
     name: 'Oct',
-    uv: 2700,
-    pv: 2700,
-    amt: 2700,
+    uv: 3490,
+    pv: 400,
+    amt: 400,
   },
   {
     name: 'Nov',
-    uv: 2100,
-    pv: 4300,
-    amt: 2100,
+    uv: 3490,
+    pv: 2900,
+    amt: 2900,
   },
   {
     name: 'Dec',
-    uv: 700,
-    pv: 4300,
-    amt: 700,
+    uv: 3490,
+    pv: 2150,
+    amt: 2150,
   },
 ];
 
-const RevenueLineGraph = () => {
-
-    return (
+const CategoryBarGraph = () => {
+      return (
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart
+        <BarChart
           width={500}
-          height={400}
+          height={300}
           data={data}
           margin={{
-            top: 10,
+            top: 5,
             right: 30,
-            left: 0,
-            bottom: 0,
+            left: 20,
+            bottom: 5,
           }}
         >
           <XAxis dataKey="name" />
           <YAxis />
-          <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#26a0da" />
-        </AreaChart>
+          <Tooltip cursor={{fill: 'transparent'}}/>
+          <Legend />
+          <Bar dataKey="pv" fill="#26a0da" />
+        </BarChart>
       </ResponsiveContainer>
     );
   }
 
-export default RevenueLineGraph
+export default CategoryBarGraph
