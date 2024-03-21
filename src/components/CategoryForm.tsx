@@ -14,8 +14,7 @@ import Button from "./Button";
 interface Props {
   category?: { _id: string,
     name: string,
-    parent: any,
-    properties: {name: string, values: string[]}[]}
+    totalPets: number}
   showModal: boolean,
   toggleModal: () => void,
   setEditedCategory: Dispatch<SetStateAction<category | undefined>>;
@@ -35,14 +34,13 @@ type propertiesType = {
 type category = {
     _id: string,
    name: string,
-   parent: any,
-   properties: {name: string, values: string[]}[]
+   totalPets: number
 }
 
 export default function CategoryForm(props: Props) {
     const [editedCategory, setEditedCategory] = useState<category | undefined>(props.category);
     const [name,setName] = useState(props.category?.name || '');
-    const [parentCategory,setParentCategory] = useState(props.category?.parent._id || '');
+    const [totalPets,setTotalPets] = useState(props.category?.totalPets || 0);
     const [properties,setProperties] = useState<{name: string, values: string}[]>([{name: "", values: ""}]);
     const [categories,setCategories] = useState<categories>([{_id: '0',name: 'mobile',parent: {},properties: []}]);
 
@@ -63,11 +61,7 @@ export default function CategoryForm(props: Props) {
     const data = {
       _id: editedCategory?._id,
       name,
-      parentCategory,
-      properties:properties.map(p => ({
-        name:p.name,
-        values:p.values.split(','),
-      })),
+      totalPets,
     };
     if (editedCategory) {
       data._id = editedCategory._id;
@@ -77,7 +71,7 @@ export default function CategoryForm(props: Props) {
       await axios.post('/api/categories', data);
     }
     setName('');
-    setParentCategory('');
+    setTotalPets(0);
     setProperties([]);
     fetchCategories();
   }
@@ -131,8 +125,8 @@ export default function CategoryForm(props: Props) {
         onChange={ev => setName(ev.target.value)}
         value={name}/>
       <select
-              onChange={ev => setParentCategory(ev.target.value)}
-              value={parentCategory}>
+              onChange={ev => setTotalPets(Number(ev.target.value))}
+              value={totalPets}>
         <option value="">No parent category</option>
         {categories.length > 0 && categories.map(category => (
           <option key={category._id} value={category._id}>{category.name}</option>

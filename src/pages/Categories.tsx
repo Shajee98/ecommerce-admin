@@ -8,8 +8,7 @@ import DeleteModal from "../components/DeleteModal";
 type category = {
   _id: string,
  name: string,
- parent: any,
- properties: {name: string, values: string[]}[]
+ totalPets: number
 }
 
 interface FocusableElement {
@@ -23,7 +22,7 @@ export default function Categories() {
   const [show,setShow] = useState(false);
   const [showDeleteModal,setShowDeleteModal] = useState(false);
   // const [parentCategory,setParentCategory] = useState('');
-  const [categories,setCategories] = useState<category[]>([{_id: '0',name: 'mobile',parent: {},properties: [{name: 'color', values: ['black', 'blue']}]}]);
+  const [categories,setCategories] = useState<category[]>([{_id: '0',name: 'dog', totalPets: 7}]);
   // const [properties,setProperties] = useState<{name: string, values: string}[]>([]);
   const cancelRef = useRef<FocusableElement>(null)
 
@@ -66,13 +65,13 @@ export default function Categories() {
       {showDeleteModal ? <DeleteModal cancelRef={cancelRef} isOpen={showDeleteModal} onClose={toggleDeleteModal}/> : null}
       <div className="w-full flex justify-between items-center">
       <h1>Categories</h1>
-      <Button className="btn-primary font-bold" onClick={toggleCategoryModal} text="+" />
+      <Button className="btn-primary bg-gradient-to-r from-[#314755] to-[#26a0da] font-bold" onClick={toggleCategoryModal} text="+" />
       </div>
         <table className="basic mt-2">
           <thead>
           <tr>
-            <th>Category name</th>
-            <th>Parent category</th>
+            <th>Name</th>
+            <th>Total Pets</th>
             <td></td>
           </tr>
           </thead>
@@ -80,7 +79,7 @@ export default function Categories() {
           {categories.length > 0 && categories.map(category => (
             <tr key={category._id}>
               <td>{category.name}</td>
-              <td>{category?.parent?.name}</td>
+              <td>{category?.totalPets}</td>
               <td>
                 <button
                   onClick={() => editCategory(category)}

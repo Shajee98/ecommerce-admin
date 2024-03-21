@@ -70,7 +70,7 @@ const RevenuePieChart = () => {
         cy="50%"
         innerRadius={60}
         outerRadius={80}
-        fill="#8884d8"
+        fill="#26a0da"
         dataKey="value"
         onMouseEnter={(_, i, e) => onPieEnter(i)}
       />

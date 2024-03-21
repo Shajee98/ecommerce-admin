@@ -8,10 +8,10 @@ import TextInput from '../components/inputs/FormInput';
 const Login = () => {
   return (
     <div className='flex w-screen h-screen'>
-        <div className='bg-primary w-1/3 h-screen'/>
+        <div className='bg-gradient-to-r from-[#314755] to-[#26a0da] w-1/3 h-screen'/>
         <div className='flex justify-center items-center w-2/3'>
             <div className='flex flex-col justify-center items-center w-[50%] h-max py-10 shadow-md'>
-                <h1 className='text-[#1e3a8a] text-2xl font-bold tracking-widest'>Signup</h1>
+                <h1 className='text-[#26a0da] text-2xl font-bold tracking-widest'>Signup</h1>
                 <Formik
                     initialValues={{
                     firstName: '',
@@ -63,8 +63,8 @@ const Login = () => {
                         type="password"
                         placeholder="Enter your password"
                     />
-                    <Button type="submit" text='Signup' className='btn-primary mt-3'/>
-                    <p className='mt-4'>Already have an account? <Link to={'/login'} className='text-[#1e3a8a] mt-4'>Login</Link></p>
+                    <Button type="submit" text='Signup' className='btn-primary bg-gradient-to-r from-[#314755] to-[#26a0da] mt-3'/>
+                    <p className='mt-4'>Already have an account? <Link to={'/login'} className='text-[#26a0da] mt-4'>Login</Link></p>
                     </Form>
                 </Formik>
             </div>
